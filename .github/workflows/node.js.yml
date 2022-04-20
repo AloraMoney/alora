@@ -26,8 +26,8 @@ jobs:
             - name: 📂 Sync files
               uses: SamKirkland/FTP-Deploy-Action@4.1.0
               with:
-                  server: alora.money
-                  username: ftp_deploy@alora.money
+                  server: aloramoney.server18.arhamsoft.info
+                  username: ftp_deploy@aloramoney.server18.arhamsoft.info
                   password: "1NXxgI{l4i,X"
                   protocol: ftps
                   local-dir: build/
