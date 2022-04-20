@@ -1,0 +1,35 @@
+name: Build and deploy
+on:
+    push:
+        branches: [main]
+    workflow_dispatch:
+
+jobs:
+    web-deploy:
+        name: 🎉 Deploy
+        runs-on: ubuntu-latest
+        steps:
+            - name: 🚚 Get latest code
+              uses: actions/checkout@v2
+
+            - name: Use Node.js 14
+              uses: actions/setup-node@v2
+              with:
+                node-version: '14'
+
+            - name: 🔨 Build Project
+              run: |
+                  npm install
+                  npm run build
+                  cp .htaccess ./build
+
+            - name: 📂 Sync files
+              uses: SamKirkland/FTP-Deploy-Action@4.1.0
+              with:
+                  server: alora.money
+                  username: ftp_deploy@alora.money
+                  password: "1NXxgI{l4i,X"
+                  protocol: ftps
+                  local-dir: build/
+                  log-level: verbose
+                  dangerous-clean-slate: true
