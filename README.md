@@ -1,4 +1,4 @@
-<img align="center" src="/assets/logo.png" height="75" alt="ALORANODE" />
+<img align="center" src="/assets/logo.png" height="75" alt="ALORAMONEY" />
 <br />
 
 # ALORANODE FRONTEND
