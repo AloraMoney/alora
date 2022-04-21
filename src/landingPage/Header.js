@@ -4,7 +4,7 @@ import Lottie from 'react-lottie-player'
 import connect from '../Assets/lotties/connect-lottie.json';
 import Web3 from 'web3';
 
-export default function Header({setUserId}) {
+export default function Header({setUserId , userId, setNetworkId}) {
     const [wallet, setWallet] = useState(false);
     const [account, setAccount] = useState(null);
     const [chainId, setChainId] = useState('');
@@ -58,18 +58,76 @@ const networks = {
   };
 
   useEffect(() => {
+    if(window.ethereum){
     window.ethereum.on("chainChanged", networkChanged);
 
     return () => {
       window.ethereum.removeListener("chainChanged", networkChanged);
     };
+}
+// eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
+    if(window.ethereum){
+    window.ethereum.on("accountsChanged", (accounts) => {
+        if (accounts.length > 0) {
+            setAccount(accounts[0]);
+            setUserId(accounts[0]);
+            localStorage.setItem("userAddress", accounts[0]);
+            setWallet(false);
+        } 
+      });
+
+    // return () => {
+    //   window.ethereum.removeListener("accountsChanged", networkChanged);
+    // };
+}
+// eslint-disable-next-line
+  }, []);
+
+  useEffect( () => {
+      const acc = localStorage.getItem('userAddress');
+        const walletConnected = async () => {
+            if (window.ethereum) {
+                const currentProvider = window.ethereum;
+                setChainId(currentProvider.chainId);
+                await currentProvider.request({ method: 'eth_requestAccounts' })
+                const web3 = new Web3(currentProvider || 'ws://remotenode.com:8546');
+                const userAccout = await web3.eth.getAccounts();
+                if(acc !== userAccout[0]){
+                    localStorage.setItem('userAddress', userAccout[0]);
+                }
+                setAccount(userAccout[0]);
+                setUserId(userAccout[0]);
+                setWallet(false);
+                networkChanged(currentProvider.chainId);
+                setNetworkId(parseInt(currentProvider.chainId,16));
+                console.log("Network ID: ",parseInt(currentProvider.chainId,16));
+                if(currentProvider.chainId !== '0x61'){
+                    console.log("ChainId from state: ",chainId);
+                    
+                    alert("Connected to wrong network!");
+                    handleNetworkSwitch('bscTestnet');
+            } else if (window.web3) {
+                    window.web3 = new Web3(window.web3.currentProvider)
+                    window.loaded_web3 = true
+                }
+            }
+        }
+    if(acc){
+        walletConnected()
+}
+// eslint-disable-next-line
   }, []);
 
   const networkChanged = (chainId) => {
     if(chainId === '0x61'){
         setNetworkName("Bsc Testnet");
+        setNetworkId(97)
     }else if(chainId === '0x38'){
         setNetworkName('Bsc Mainnet');
+        setNetworkId(56)
     }else {
         setNetworkName("Wrong Network");
     }
@@ -80,17 +138,21 @@ const handleConnect = async () => {
         if(!window.ethereum){
             window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
         } else if (window.ethereum) {
-            const curretProvider = window.ethereum;
-            setChainId(curretProvider.chainId);
-            await curretProvider.request({ method: 'eth_requestAccounts' })
-            const web3 = new Web3(curretProvider || 'ws://remotenode.com:8546');
+            const currentProvider = window.ethereum;
+            setChainId(currentProvider.chainId);
+            await currentProvider.request({ method: 'eth_requestAccounts' })
+            const web3 = new Web3(currentProvider || 'ws://remotenode.com:8546');
             const userAccout = await web3.eth.getAccounts();
             setAccount(userAccout[0]);
             setUserId(userAccout[0]);
+            localStorage.setItem("userAddress", userAccout[0]);
             setWallet(false);
-            networkChanged(curretProvider.chainId);
-            if(curretProvider.chainId !== '0x61'){
+            networkChanged(currentProvider.chainId);
+            setNetworkId(parseInt(currentProvider.chainId,16));
+            console.log("Network ID: ",parseInt(currentProvider.chainId,16));
+            if(currentProvider.chainId !== '0x61'){
                 console.log("ChainId from state: ",chainId);
+                
                 alert("Connected to wrong network!");
                 handleNetworkSwitch('bscTestnet');
         } else if (window.web3) {
@@ -115,12 +177,21 @@ const connectWallet = () => {
 }
 
 const handleDisconnect = () => {
-    alert("Are you sure want to disconnect!");
-    setAccount(null);
-    setWallet(false);
-    setChainId('');
-    setNetworkName('');
-    setUserId('');
+    if(userId){
+        alert("Are you sure want to disconnect!");
+        setAccount(null);
+        setWallet(false);
+        setChainId('');
+        setNetworkName('');
+        setUserId(null);
+        localStorage.removeItem("userAddress");
+    }else {
+        setAccount(null);
+        setWallet(false);
+        setChainId('');
+        setNetworkName('');
+        setUserId(null);
+    }
 }
 const handleNetworkSwitch = async (networkName) => {
     await changeNetwork({ networkName });
@@ -202,6 +273,9 @@ return (
                                                 <img src='./images/metamask-logo.png' alt="metamask" />
                                                 Metamask
                                             </button>
+                                            <button className='metamask-btn' onClick={() => handleDisconnect()}>
+                                                    Close
+                                                </button>
                                             {/* <button className='metamask-btn'>
                                                     <img src='./images/wallet-connect.svg' alt="WallectConnect" />
                                                     WallectConnect

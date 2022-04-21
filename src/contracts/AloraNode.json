@@ -397,6 +397,60 @@
             "type": "function"
         },
         {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "_reserveAllocation",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "mintReserveAllocation",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "_reservePool",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "mintReservePool",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "_teamAllocation",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "mintTeamAllocation",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
             "inputs": [],
             "name": "name",
             "outputs": [
@@ -476,6 +530,32 @@
         },
         {
             "inputs": [],
+            "name": "reserveAllocationAmount",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "reservePoolAmount",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
             "name": "sellFee",
             "outputs": [
                 {
@@ -522,19 +602,6 @@
                 }
             ],
             "name": "setExcludedFromFee",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "uint32",
-                    "name": "value",
-                    "type": "uint32"
-                }
-            ],
-            "name": "setLiquidityFee",
             "outputs": [],
             "stateMutability": "nonpayable",
             "type": "function"
@@ -658,6 +725,19 @@
         },
         {
             "inputs": [],
+            "name": "teamAllocationAmount",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
             "name": "totalSupply",
             "outputs": [
                 {
@@ -759,32 +839,6 @@
                 }
             ],
             "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "uniswapV2Router",
-            "outputs": [
-                {
-                    "internalType": "contract IUniswapV2Router02",
-                    "name": "",
-                    "type": "address"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "_router",
-                    "type": "address"
-                }
-            ],
-            "name": "updateRouter",
-            "outputs": [],
-            "stateMutability": "nonpayable",
             "type": "function"
         },
         {

@@ -28,6 +28,24 @@
             "type": "function"
         },
         {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "to",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "claim",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
             "inputs": [],
             "name": "countOperator",
             "outputs": [
@@ -112,26 +130,7 @@
                     "type": "uint256"
                 }
             ],
-            "name": "getAmountETH2",
-            "outputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "_amount",
-                    "type": "uint256"
-                }
-            ],
-            "name": "getAmountFee",
+            "name": "getClaimFee",
             "outputs": [
                 {
                     "internalType": "uint256",
@@ -161,6 +160,25 @@
                     "internalType": "uint32",
                     "name": "",
                     "type": "uint32"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "getTransferFee",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
                 }
             ],
             "stateMutability": "view",
@@ -213,6 +231,19 @@
                     "internalType": "address",
                     "name": "",
                     "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "rateClaimFee",
+            "outputs": [
+                {
+                    "internalType": "uint32",
+                    "name": "",
+                    "type": "uint32"
                 }
             ],
             "stateMutability": "view",
@@ -303,19 +334,6 @@
             "type": "function"
         },
         {
-            "inputs": [],
-            "name": "router",
-            "outputs": [
-                {
-                    "internalType": "contract IUniswapV2Router02",
-                    "name": "",
-                    "type": "address"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
             "inputs": [
                 {
                     "internalType": "address",
@@ -324,6 +342,19 @@
                 }
             ],
             "name": "setOperator",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint32",
+                    "name": "_rateClaimFee",
+                    "type": "uint32"
+                }
+            ],
+            "name": "setRateClaimFee",
             "outputs": [],
             "stateMutability": "nonpayable",
             "type": "function"
@@ -443,24 +474,6 @@
                 }
             ],
             "name": "transfer",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "recipient",
-                    "type": "address"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "amount",
-                    "type": "uint256"
-                }
-            ],
-            "name": "transferETH",
             "outputs": [],
             "stateMutability": "nonpayable",
             "type": "function"

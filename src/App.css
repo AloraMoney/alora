@@ -118,7 +118,7 @@ header .connect-to-alora .metamask-btn img{height: 30px;width: 30px;margin-right
 .create-node .upgrade-node h4{margin-bottom: 20px;}
 .create-node .upgrade-node p{margin-bottom: 26px;}
 .create-node .upgrade-node ul{margin-bottom: 39px;}
-.create-node .upgrade-node ul li{margin-right: 120px;position: relative;}
+.create-node .upgrade-node ul li{margin-bottom: 10px;position: relative;}
 .create-node .upgrade-node ul li::before{content: '';position: absolute;width: 10px;height: 10px;background: #AA8B3A;top: 7px;left: -30px;border-radius: 50%;}
 .create-node  .nav-link{padding: 19px 35px;font-size: 17px;line-height: 20px;transform: skew(348deg, 360deg);background: #C8AB5F;color: #fff;opacity: 0.3;margin-right: 15px;margin-bottom: 15px;border-radius: 0.25rem;}
 .create-node  .nav-item.show .nav-link, .nav-link.active{opacity: 1;border: none;}
@@ -147,10 +147,24 @@ footer .copywrite{margin-bottom: 25px;}
     text-align: center;
     padding: 30px;
     cursor: pointer;
+    position: relative;
+}
+.tiers-list .item .tick{
+    display: none;
 }
 .tiers-list .item:hover , .tiers-list .item.active {
-    border: 1px solid #C8AB5F;
+    border: 2px solid #C8AB5F;
     border-radius: 13px;
+}
+.tiers-list .item:hover .tick, .tiers-list .item.active .tick {
+    background: #c8ab5f;
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 20px;
+    padding: 5px;
+    border-top-right-radius: 8px;
+    display: block;
 }
 .tiers-list .item .image {
     height: 150px;
