@@ -9,8 +9,8 @@ export const addressList = {
         56: '0xD2B9c56c8b67e2d8ffCb8bAEE7284D4871860184',
     },
     AloraNode: {
-        97: '0x270F54a65dAca823fb87e478aB24183521F5b064',
-        56: '0x270F54a65dAca823fb87e478aB24183521F5b064',
+        97: '0x7252C261258d8AC61187336A65AD0e6d815A31dB',
+        56: '0x7252C261258d8AC61187336A65AD0e6d815A31dB',
     },
     NodeManager: {
         97: '0xB4b1D5643ec7D6c901eB794af392bFAdec6d7491',
